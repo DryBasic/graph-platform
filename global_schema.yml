@@ -1,5 +1,3 @@
-# Graph Global Schema
-
 node_types:
   - name: 'A'
     id_dtype: 'int'
