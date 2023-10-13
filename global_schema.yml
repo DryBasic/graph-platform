@@ -28,4 +28,3 @@ edge_types:
     has_inverse: False
     from: 'A'
     to: 'B'
-    properties:

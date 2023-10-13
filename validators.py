@@ -14,18 +14,35 @@ class GlobalSchema:
 
         self.validate_schema()
 
-    def validate_schema(self):
-        # validate schema shape using "schema" package
+    def validate_schema(self) -> None:
+        """
+        Validates schema shape using the "schema" package.
+        Validates referential properties of global schema in accordance with neo4j rules:
+            1. Edges should be referenced by both partners
+            2. Node types should be unique
+            3. Edge types should be unique
+
+        Will raise exception for validation failures.
+        """
         shape.global_schema.validate(self.schema)
 
-        # validate referential properties in accordance with neo4j rules
-        # 1: edges should be referenced by both partners 
-        # 2: node types should be unique
-        # 3: edge types should be unique
-        for node in self.schema.get('node_types'):
-            name = node.get('name')
-            for edge in node.get('edges'):
-                pass
+        node_tree = {i['name']:i for i in self.schema['node_types']}
+        if len(set(node_tree.keys())) != len(node_tree):
+            raise Exception('Duplicate node_type names')
+
+        for node, attr in node_tree.items():
+
+            edge_tree = {i['name'] for i in attr.get('edges')}
+
+            for edge in attr.get('edges'):
+                edge_name = edge.get('name')
+                partner = edge.get('edge_partner')
+                
+                if partner not in node_tree:
+                    raise Exception(f'"{node}" partner "{partner}" does not exist')
+                partner_edges = node_tree[partner]['edges']
+                if edge_name not in [i['name'] for i in partner_edges]:
+                    raise Exception(f'"{node}" partner "{partner}" lacks edge {edge_name}')
 
     def validate_mapping(self, map_path, map_type) -> bool:
         pass
