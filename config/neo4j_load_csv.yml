@@ -1,0 +1,30 @@
+URI: "bolt://localhost:7687"
+USER: "neo4j"
+PASS: 
+
+nodes:
+  - csvname: 'track.csv'
+    label: 'Track'
+    properties:
+      uuid: 'track_uuid'
+      spotify_id: 'track_id'
+      name: 'track_name'
+      cleaned_name: 'clean_track'
+      release_date: 'release_date'
+
+  - csvname: 'artist.csv'
+    label: 'Artist'
+    properties:
+      uuid: 'artist_uuid'
+      name: 'artist'
+
+edges:
+  - csvname: 'edge_track_artist.csv'
+    label: 'PERFORMED'
+    properties: []
+    from_label: 'Track'
+    from_id: 'uuid'
+    from_col: 'track_uuid'
+    to_label: 'Artist'
+    to_id: 'uuid'
+    to_col: 'artist_uuid'

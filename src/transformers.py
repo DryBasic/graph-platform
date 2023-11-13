@@ -1,4 +1,5 @@
 import validators as val
+import lib.GraphToRDB as g2r
 
 class FormatTransformer:
     """"""
@@ -9,17 +10,14 @@ class FormatTransformer:
         self.format = input_format
 
     def load_json(self, mappings: dict):
-        if self.format == 'json':
-            raise Exception('Data is already in json format')
+        pass
 
     def load_graph(self, mappings: dict):
-        if self.format == 'graph':
-            raise Exception('Data is already in graph format')
+        pass
 
     def load_relational(self, mappings: dict):
-        if self.format == 'rdb':
-            raise Exception('Data is already in rdb format')
-
+        pass
+    
     def to_json(self):
         match self.format:
             case 'relational':
@@ -51,12 +49,26 @@ class FormatTransformer:
         pass
 
     def graph_to_relational(self):
+        """Generates a dict with the following keys pointing to a tuple of tuples:
+        * nodeTypes(nodeID, nodeType)
+        * edges(edgeID, edgeType), hasInverse)
+        * nodeProperties(nodeID, propName, propDType, propValue)
+        * edgeProperties(edgeID, propName, propDType, propValue)
+        * connections(edgeID, fromNodeID, toNodeID)
+        """
         pass
 
     def json_to_graph(self):
         pass
 
     def json_to_relational(self):
+        """Generates a dict with the following keys pointing to a tuple of tuples:
+        * nodeTypes(nodeID, nodeType)
+        * edges(edgeID, edgeType), hasInverse)
+        * nodeProperties(nodeID, propName, propDType, propValue)
+        * edgeProperties(edgeID, propName, propDType, propValue)
+        * connections(edgeID, fromNodeID, toNodeID)
+        """
         pass
 
     def relational_to_graph(self):

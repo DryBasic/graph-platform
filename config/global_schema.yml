@@ -1,0 +1,97 @@
+nodes:
+  - label: 'Track'
+    properties: 
+      - name: 'name'
+        dtype: 'string'
+      - name: 'duration_ms'
+        dtype: 'integer'
+      - name: 'album'
+        dtype: 'string'
+      - name: 'popularity'
+        dtype: 'integer'
+      - name: 'available_markets'
+        dtype: 'list'
+      - name: 'acousticness'
+        dtype: 'float'
+      - name: 'danceability'
+        dtype: 'float'
+      - name: 'energy'
+        dtype: 'float'
+      - name: 'instrumentalness'
+        dtype: 'float'
+      - name: 'liveness'
+        dtype: 'float'
+      - name: 'loudness'
+        dtype: 'float'
+      - name: 'speechiness'
+        dtype: 'float'
+      - name: 'tempo'
+        dtype: 'float'
+      - name: 'time_signature'
+        dtype: 'float'
+      - name: 'valence'
+        dtype: 'float'
+
+  - label: 'Playlist'
+    properties: 
+      - name: 'name'
+        dtype: 'string'
+      - name: 'description'
+        dtype: 'string'
+      - name: 'followers'
+        dtype: 'integer'
+
+  - label: 'Artist'
+    properties: 
+      - name: 'name'
+        dtype: 'string'
+      - name: 'genre'
+        dtype: 'list'
+      - name: 'followers'
+        dtype: 'integer'
+      - name: 'popularity_rank'
+        dtype: 'integer'
+
+  - label: 'Genre'
+    properties: 
+      - name: 'name'
+        dtype: 'string'
+    
+  - label: 'Keyword'
+    properties: 
+      - name: 'name'
+        dtype: 'string'
+
+  - label: 'Topic'
+    properties:
+      - name: 'name'
+        dtype: 'string'
+
+
+edges:
+  - label: 'IS_ITEM_IN'
+    node_start_label: 'Track'
+    node_end_label: 'Playlist'
+
+  - label: 'RELATED'
+    node_start_label: 'Artist'
+    node_end_label: 'Artist'
+
+  - label: 'PERFORMED'
+    node_start_label: 'Artist'
+    node_end_label: 'Track'
+
+  - label: 'REFERENCED_BY'
+    node_start_label: 'Keyword'
+    node_end_label: 'Track'
+    properties:
+      name: 'occurence'
+      dtype: 'integer'
+
+  - label: 'CATEGORIZED_AS'
+    node_start_label: 'Artist'
+    node_end_label: 'Genre'
+
+  - label: 'MEMBER_OF'
+    node_start_label: 'Keyword'
+    node_end_label: 'Topic'

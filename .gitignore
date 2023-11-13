@@ -1,2 +1,5 @@
 viz.py
+test.ipynb
 /__pycache__/
+.DS_Store
+/data/raw/

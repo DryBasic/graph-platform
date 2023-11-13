@@ -47,18 +47,3 @@ class GlobalSchema:
     def validate_mapping(self, map_path, map_type) -> bool:
         pass
 
-    def to_relational(self) -> dict:
-        """Convert validated global_schema dictionary to a set of tables.
-        Tables expressed as tuple of tuples (records) in a dictionary keyed to the entity/relationship name."""
-    # def validation_state(self, func, msg):
-    #     def wrapper(*args, **kwargs):
-    #         state_bool = func(*args, **kwargs)
-    #         state = 'Pass' if state_bool else 'Fail'
-    #         self.validation_results.append(state_bool)
-    #         if self.print_val_results:
-    #             print(f'{msg}: {state}')
-    #     return wrapper
-
-
-    
-
