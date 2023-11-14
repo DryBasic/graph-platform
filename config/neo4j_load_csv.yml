@@ -1,6 +1,6 @@
 URI: "bolt://localhost:7687"
 USER: "neo4j"
-PASS: 
+PASS: ''
 
 nodes:
   - csvname: 'track.csv'
@@ -16,7 +16,16 @@ nodes:
     label: 'Artist'
     properties:
       uuid: 'artist_uuid'
+      spotify_id: 'id'
       name: 'artist'
+      followers: 'followers'
+      popularity: 'popularity'
+
+  - csvname: 'genre.csv'
+    label: 'Genre'
+    properties:
+      uuid: 'genre_uuid'
+      name: 'genres'
 
 edges:
   - csvname: 'edge_track_artist.csv'
@@ -25,6 +34,16 @@ edges:
     from_label: 'Track'
     from_id: 'uuid'
     from_col: 'track_uuid'
+    to_label: 'Artist'
+    to_id: 'uuid'
+    to_col: 'artist_uuid'
+
+  - csvname: 'edge_artist_genre.csv'
+    label: 'CATEGORIZED_AS'
+    properties: []
+    from_label: 'Genre'
+    from_id: 'uuid'
+    from_col: 'genre_uuid'
     to_label: 'Artist'
     to_id: 'uuid'
     to_col: 'artist_uuid'

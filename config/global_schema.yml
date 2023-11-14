@@ -95,3 +95,10 @@ edges:
   - label: 'MEMBER_OF'
     node_start_label: 'Keyword'
     node_end_label: 'Topic'
+
+
+# CREATE
+# (:Schema {name:"Topic"})<-[:MEMBER_OF]-(:Schema {name:"Keyword"})-[:REFERENCED_BY]->
+# (:Schema {name:"Track"})<-[:PERFORMED]-(:Schema {name:"Artist"})-[:CATEGORIZED_AS]->(:Schema {name: "Genre"});
+# MATCH (n:Schema {name:"Track"})
+# CREATE (n)-[:IS_ITEM_IN]->(:Schema {name:"Playlist"});
