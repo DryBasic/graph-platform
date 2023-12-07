@@ -69,6 +69,7 @@ with GraphDatabase.driver(neo_schema.get('URI'),
             query,
             database_="neo4j",  
         )
+        print(f"Loaded node {node['label']}")
 
     for edge in neo_schema.get("edges"):
         query = gen.create_edges_from_csv(**edge)
@@ -76,4 +77,5 @@ with GraphDatabase.driver(neo_schema.get('URI'),
             query,
             database_="neo4j",  
         )
+        print(f"Loaded edge {edge['label']}") 
     
