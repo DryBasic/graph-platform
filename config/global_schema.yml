@@ -73,17 +73,13 @@ edges:
     node_start_label: 'Track'
     node_end_label: 'Playlist'
 
-  - label: 'RELATED'
-    node_start_label: 'Artist'
-    node_end_label: 'Artist'
-
-  - label: 'PERFORMED'
+  - label: 'PERFORMS'
     node_start_label: 'Artist'
     node_end_label: 'Track'
 
-  - label: 'REFERENCED_BY'
-    node_start_label: 'Keyword'
-    node_end_label: 'Track'
+  - label: 'CONTAINS'
+    node_start_label: 'Track'
+    node_end_label: 'Keyword'
     properties:
       name: 'occurence'
       dtype: 'integer'

@@ -1,49 +1,76 @@
 URI: "bolt://localhost:7687"
 USER: "neo4j"
-PASS: ''
+PASS: 'rhQKvDr1!'
 
 nodes:
-  - csvname: 'track.csv'
+  - csvname: 'node_track.csv'
     label: 'Track'
     properties:
-      uuid: 'track_uuid'
-      spotify_id: 'track_id'
-      name: 'track_name'
-      cleaned_name: 'clean_track'
+      spotify_id: 'spotify_id'
+      name: 'name'
+      popularity: 'popularity'
+      streams: 'streams'
       release_date: 'release_date'
+      # length: 'duration_ms'
+      # key: 'key'
+      # mode: 'mode'    
 
-  - csvname: 'artist.csv'
+  - csvname: 'node_artist.csv'
     label: 'Artist'
     properties:
-      uuid: 'artist_uuid'
-      spotify_id: 'id'
-      name: 'artist'
+      spotify_id: 'spotify_id'
+      name: 'name'
       followers: 'followers'
       popularity: 'popularity'
 
-  - csvname: 'genre.csv'
+  - csvname: 'node_genre.csv'
     label: 'Genre'
     properties:
-      uuid: 'genre_uuid'
       name: 'genres'
+
+  - csvname: 'node_playlist.csv'
+    label: 'Playlist'
+    properties:
+      spotify_id: 'id'
+      name: 'name'
+      description: 'description'
+
+  - csvname: 'node_feature.csv'
+    label: 'AudioFeature'
+    properties:
+      feature_id: 'feature_id'
+      name: 'name'
+      feature_name: 'feature'
+      grouping: 'encoding'
 
 edges:
   - csvname: 'edge_track_artist.csv'
     label: 'PERFORMED'
-    properties: []
-    from_label: 'Track'
-    from_id: 'uuid'
-    from_col: 'track_uuid'
-    to_label: 'Artist'
-    to_id: 'uuid'
-    to_col: 'artist_uuid'
+    properties: {}
+    from_label: 'Artist'
+    from_id: 'spotify_id' 
+    from_col: 'artist'
+    to_label: 'Track'
+    to_id: 'spotify_id' 
+    to_col: 'track'
 
   - csvname: 'edge_artist_genre.csv'
     label: 'CATEGORIZED_AS'
-    properties: []
-    from_label: 'Genre'
-    from_id: 'uuid'
-    from_col: 'genre_uuid'
-    to_label: 'Artist'
-    to_id: 'uuid'
-    to_col: 'artist_uuid'
+    properties: {}
+    from_label: 'Artist'
+    from_id: 'spotify_id'
+    from_col: 'artist'
+    to_label: 'Genre'
+    to_id: 'name'
+    to_col: 'genres'
+
+  - csvname: 'edge_playlist_track.csv'
+    label: 'CONTAINS_TRACK'
+    properties: 
+       added_at: 'added_at'
+    from_label: 'Playlist'
+    from_id: 'spotify_id'
+    from_col: 'playlist_id'
+    to_label: 'Track'
+    to_id: 'spotify_id'
+    to_col: 'track_id'
