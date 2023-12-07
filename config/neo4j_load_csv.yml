@@ -1,6 +1,6 @@
 URI: "bolt://localhost:7687"
 USER: "neo4j"
-PASS: 'rhQKvDr1!'
+PASS: ''
 
 nodes:
   - csvname: 'node_track.csv'
@@ -38,7 +38,7 @@ nodes:
   - csvname: 'node_feature.csv'
     label: 'AudioFeature'
     properties:
-      feature_id: 'feature_id'
+      #feature_id: 'feature_id'
       name: 'name'
       feature_name: 'feature'
       grouping: 'encoding'
@@ -74,3 +74,16 @@ edges:
     to_label: 'Track'
     to_id: 'spotify_id'
     to_col: 'track_id'
+
+- csvname: 'edge_track_feature.csv'
+  label: 'AUDIO_FEATURE'
+  properties: 
+    feature: 'feature'
+    encoding: 'encoding'
+    value: 'value'
+  from_label: 'Track'
+  from_id: 'spotify_id'
+  from_col: 'spotify_id'
+  to_label: 'AudioFeature'
+  to_id: 'name'
+  to_col: 'name'
