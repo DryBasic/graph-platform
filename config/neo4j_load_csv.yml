@@ -42,7 +42,7 @@ nodes:
   - csvname: 'node_keywords.csv'
     label: 'Keyword'
     properties: 
-      name: 'keyword'
+      name: 'word'
 
   - csvname: 'node_topic.csv'
     label: 'Topic'
