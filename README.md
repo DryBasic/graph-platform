@@ -1,3 +1,13 @@
+## About
+
+This repository contains the work performed to generate a knowledge graph to represent Spotify entities (playlist, track, artist, etc.) and the keywords and topics extracted from a track's lyrics (fetched from Genius). 
+
+Contained within is a generalized script that maps csv columns to neo4j entities and allows for local loading of the entities contained within the csvs. More details in the next section.
+
+This project was completed as part of DSE 203: Data Integration & ETL.
+
+***
+
 ## Loading Data to neo4j
 
 Required packages: `neo4j`
