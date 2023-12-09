@@ -13,3 +13,29 @@ Required packages: `neo4j`
     - Ensure your neo4j database is active/started
 
 Helpful links: [query neo4j from python](https://neo4j.com/docs/python-manual/current/query-simple/), [csv imports in neo4j](https://neo4j.com/developer/guide-import-csv/)
+
+***
+
+## Entity Fetching and Additonal Processing
+
+The Spotify API calling and entity extraction can be found in data/fetch/spotify_api. 
+
+* Tracks (2 sources)
+    - 953 tracks obtained from a Kaggle Dataset
+        - Ran Spotify API to fetch Spotify IDs, required fuzzy value matching to identify correct return
+    - 1277 tracks obtained from running the Spotify API using track ids coming from the Playlist API
+
+* Playlists 
+    - Obtained from Spotify Featured Playlist API
+    - The track_ids contained herein were used to gather more tracks with the Tracks API
+
+* Artists & Genre
+    - Obtained from Spotify Artist API using the artist ids that came from the Tracks API call
+    - Genre is an attribute of Artist
+
+* Audio Features
+    - Obtained from Spotify Audio Feature API using track ids as inputs
+    - Performed additional transformations as can be found in data/transform/audio_features.ipynb
+
+* Keyword & Topic
+    - Extracted from lyrics pulled using the Genius API (data/fetch/genius_api.ipynb)
