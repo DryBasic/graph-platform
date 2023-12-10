@@ -33,7 +33,7 @@ Required packages: `neo4j`
 
 1. Create database in your neo4j instance.
 2. Install the APOC extension on your database.
-3. Download the csvs from the `data/clean` directory, and add them to your neo4j database's import directory.
+3. Download the csvs from the `data/graph_entities` directory, and add them to your neo4j database's import directory.
 4. Update the `config/neo4j_load_csv.yml` with your database URI and credentials.
     - The default username is "neo4j"
     - The default URI is "bolt://localhost:7687"
@@ -47,7 +47,7 @@ Helpful links: [query neo4j from python](https://neo4j.com/docs/python-manual/cu
 
 ## Entity Fetching and Additonal Processing
 
-The Spotify API calling and entity extraction can be found in data/fetch/spotify_api. 
+The Spotify API calling and entity extraction can be found in notebooks/spotify_api. 
 
 * Tracks (2 sources)
     - 953 tracks obtained from a Kaggle Dataset
@@ -64,7 +64,7 @@ The Spotify API calling and entity extraction can be found in data/fetch/spotify
 
 * Audio Features
     - Obtained from Spotify Audio Feature API using track ids as inputs
-    - Performed additional transformations as can be found in data/transform/audio_features.ipynb
+    - Performed additional transformations as can be found in notebooks/audio_features.ipynb
 
 * Keyword & Topic
-    - Extracted from lyrics pulled using the Genius API (data/fetch/genius_api.ipynb)
+    - Extracted from lyrics pulled using the Genius API (notebooks/genius_api.ipynb)
