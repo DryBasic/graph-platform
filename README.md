@@ -7,6 +7,25 @@ Contained within is a generalized script that maps csv columns to neo4j entities
 This project was completed as part of DSE 203: Data Integration & ETL.
 
 ***
+## Getting spotify data for kaggle dataset
+
+The notebook `kaggle_spotify_fetcher.ipynb` does a few things:
+
+1. Searching spotify for each song in the kaggle dataset using the track name and artist(s) name, and grabbing the best match using jaccard similarity
+2. Filters out songs that didn't get a satisfactory match on spotify
+3. Gets the audio analysis for all of the kaggle tracks, which has things like tempo, key, and node
+
+## Natural Language Processing on lyrics
+
+The notebook `get_lyrics_keywords_and_topics` takes care of a few things:
+
+1. First, the notebook loads the genius lyrics and does the same jaccard similarity matching as from the previous step, throwing out any songs for which we couldn't retrieve a correct match from genius.
+2. Next, the notebook does textrank phrase ranking and RAKE phrase ranking to generate phrases. We didn't end up using these for the final graph as the number of unique phrases was much greater than just keywords and would probably be too much to load into the graph.
+3. Finally, the notebook does Latent Dirichlet Allocation (LDA) Topic searching, which is broken into a few parts:
+    1. First, we split the lyrics into a vector of words
+    2. Next, we remove stopwords and perform lemmatization to get the roots of words, and get rid of anything that isn't a noun, adjective, verb, or adverb.
+    3. Finally, we run the LDAmodel and find the top keywords for each topic, and which documents contain which keywords
+        * This will be integrated into the graph as Topic Nodes and Keyword Nodes, with songs connect to topics through the keywords but not directly
 
 ## Loading Data to neo4j
 
