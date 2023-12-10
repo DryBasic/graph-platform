@@ -3,3 +3,4 @@ test.ipynb
 .DS_Store
 /data/raw/
 config/secret.yml
+.ipynb_checkpoints
